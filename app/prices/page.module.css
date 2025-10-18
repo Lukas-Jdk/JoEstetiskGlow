@@ -1,0 +1,158 @@
+/* app/prices/page.module.css */
+
+/* app/prices/page.module.css */
+
+.pricesContainer {
+  background-color: var(--bg-main);
+}
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  margin: 1rem 0 2rem;
+  text-align: center;
+}
+.header h1 {
+  font-family: var(--font-playfair);
+  font-size: clamp(2rem, 6vw, 4rem);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-shadow: 0 0 2px rgba(255, 215, 0, 0.9), 0 0 4px rgba(255, 215, 0, 0.8),
+    0 0 6px rgba(255, 160, 0, 0.6);
+}
+.header p {
+  font-size: clamp(1rem, 2.5vw, 1.7rem);
+  font-family: var(--font-montserrat);
+  color: var(--gold);
+  margin-bottom: 3rem;
+}
+
+/* Section */
+.section { margin-bottom: 3rem; }
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+.sectionHead h2 { font-size: var(--font-size-h2); }
+
+/* === TABLE (atrodo kaip tavo „div lentelė“) === */
+.tableWrap {
+  background-color: #fcf6eb;                  /* tavo .table bg */
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table caption { text-align: left; }
+
+/* eilutės – paliekam tavo tarpus/linijas */
+.row {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.row:first-child {
+  border-top: 0;
+}
+
+.table th,
+.table td {
+  padding: 1rem 1.2rem;
+  vertical-align: top;
+}
+
+.colTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+}
+
+.tableStrong { 
+  font-size: 1.15rem; 
+  
+
+}
+
+.colPrice {
+  color: var(--gold-deep);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  text-align: right; /* desktop’e kaina dešinėje – kaip buvo */
+}
+
+/* helper tekstai */
+.small {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: var(--font-montserrat);
+  font-weight: 500;
+}
+.smallMuted {
+  color: var(--text-muted);
+  font-family: var(--font-montserrat);
+  font-size: 1rem;
+   font-weight: 500;
+}
+
+/* Book button */
+.bookBtn {
+  background: var(--gold);
+  color: #fff;
+  font-weight: 600;
+  font-family: var(--font-montserrat);
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.bookBtn:hover {
+  background: var(--gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive – elgiasi kaip tavo buvęs „grid į 1 stulpelį“ */
+@media (max-width: 700px) {
+  .table thead { display: none; }     /* nerodom head, kad vaizdas nesikeistų */
+
+  .table tr {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    padding: 0.2rem 0;                /* kad vizualiai atkartotų buvusį „row“ */
+  }
+
+  .table th,
+  .table td {
+    padding: 0.4rem 1rem;
+  }
+
+  .colPrice {
+    justify-self: start;
+    text-align: left;                  /* kaip buvo tavo mobile */
+  }
+
+  /* jei nori papildomo label’io kainai mobiliai: */
+  .table td[data-label]::before {
+    content: attr(data-label) " ";
+    font-weight: 600;
+    margin-right: 0.35rem;
+  }
+}

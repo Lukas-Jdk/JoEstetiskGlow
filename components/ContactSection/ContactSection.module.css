@@ -1,0 +1,217 @@
+/* components/ContactSection.module.css */
+/* remiasi styles/tokens.css kintamaisiais */
+.section {
+  background: linear-gradient(180deg, var(--bg-main), var(--bg-page));
+  padding: 3rem 1rem;
+
+}
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.header h2 {
+  font-family: var(--font-playfair);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+.dots {
+  width: 220px;
+  height: 8px;
+  margin: 0.5rem auto 0;
+  background: radial-gradient(var(--gold) 2px, transparent 2px) repeat-x;
+  background-size: 12px 8px;
+  opacity: 0.65;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1.25rem;
+  margin: 2.1rem 0;
+
+}
+
+/* kortelė */
+.card {
+  background: rgb(255, 251, 244);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: calc(var(--radius) + 8px);
+  box-shadow: var(--shadow-soft);
+  padding: 1.4rem;
+}
+.cardTitle {
+  font-size: var(--font-size-h2);
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+/* sąrašas su ikonų plytelėmis */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.8rem 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.list a {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+.list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+/* ikonų „plytelė“ – šilta šampaninė su auksu */
+.iconBox {
+  width: 72px;
+  height: 72px;
+  /* fallback jei color-mix nepalaikomas */
+  background: linear-gradient(180deg, #f3e1be, #ffecd4);
+  border-radius: calc(var(--radius) + 6px);
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+.icon {
+  width: 34px;
+  height: 34px;
+  fill: var(--gold);
+}
+
+.itemBody {
+  display: grid;
+  gap: 0.15rem;
+}
+.itemBody strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.list li span {
+  color: rgba(49, 33, 11, 0.75);
+} /* iš --text-primary */
+
+/* Antraštė virš ikonėlės */
+.hoursTitle {
+  font-size: var(--font-size-h2);
+  color: var(--text-primary);
+padding: 1rem 0rem;
+}
+
+/* Ikona + sąrašas vienoje eilutėje */
+.hoursRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Sąrašas šalia ikonėlės */
+.hoursList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: .25rem;
+}
+
+/* Kiekviena eilutė: diena kairėje, laikas dešinėje */
+.hoursItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-width: 220px;          /* kad būtų vietos „Man–Fre“ ir laikui */
+  color: var(--text-primary);
+}
+
+.day,
+.time { font-weight: 700; }
+
+.hours {
+  margin-top: 0.8rem;
+}
+.hoursHead {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: center;
+  margin: 1.2rem 0 0.4rem;
+}
+.hours h4 {
+  font-size: var(--font-size-h3);
+  color: var(--text-primary);
+  margin: 0;
+}
+.hours ul {
+  list-style: none;
+  margin: 0.4rem 0 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-primary);
+  max-width: 260px;
+}
+.day,
+.time {
+  font-weight: 700;
+}
+
+/* CTA */
+.ctaRow {
+display: flex;
+justify-content: center;
+  margin-top: 1rem;
+}
+.bookBtn {
+  background: var(--gold);
+  color: #fff;
+  font-weight: 700;
+  border-radius: calc(var(--radius) + 2px);
+  padding: 0.8rem 1.4rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.bookBtn:hover {
+  background: var(--gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+/* --- MAP --- */
+.mapBox {
+  border-radius: calc(var(--radius) + 8px);
+  overflow: hidden;
+  min-height: 320px;
+  background: var(--bg-surface);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-soft);
+}
+
+.mapBox iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+
+/* responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

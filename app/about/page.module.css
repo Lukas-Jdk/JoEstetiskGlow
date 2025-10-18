@@ -1,0 +1,73 @@
+/* app/about/page.module.css */
+.page {
+  background: var(--bg-page);
+  padding: 2.5rem 1rem 3rem;
+}
+
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto 2rem auto;
+  background: var(--bg-surface);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: calc(var(--radius) + 8px);
+  box-shadow: var(--shadow-soft);
+  padding: 1.4rem 1.5rem;
+}
+
+.lead {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-family: var(--font-montserrat);
+}
+
+.h2 {
+  font-family: var(--font-playfair);
+  font-weight: 600;
+  letter-spacing: .3px;
+  color: var(--text-primary);
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.benefits {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: .5rem 1rem;
+  padding: 0;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-montserrat);
+}
+.benefits li {
+  position: relative;
+  padding-left: 1.2rem;
+}
+.benefits li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.textBlock {
+  display: grid;
+  gap: .7rem;
+  color: var(--text-primary);
+  font-family: var(--font-montserrat);
+  line-height: 1.6;
+}
+.text {
+  color: var(--text-primary);
+  font-family: var(--font-montserrat);
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .section { padding: 1rem 1rem; }
+  .benefits { grid-template-columns: 1fr; }
+}

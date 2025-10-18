@@ -1,0 +1,28 @@
+/* Logo.module.css */
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  text-decoration: none;
+}
+
+.logo span {
+  font-family: var(--font-playfair);
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  color: var(--text-primary);
+  font-size: 1.8rem;
+
+}
+
+.logo p {
+  font-family: var(--font-montserrat);
+  color: var(--text-second);
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+
+}

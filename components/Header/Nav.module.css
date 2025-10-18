@@ -1,0 +1,158 @@
+/* Nav.module.css */
+
+/* --- inkaro wrapperis aplink burger + nav --- */
+.menuRoot {
+  position: relative; /* <— svarbu: nav prisiriša prie šito */
+  display: inline-block; /* kad plotis būtų pagal burgerį */
+}
+
+/* Desktop */
+.navBar {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+.navBar a {
+  color: var(--text-primary);
+  font-family: var(--font-montserrat);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  transition: color 0.25s ease;
+}
+.navBar a:hover {
+  color: white;
+}
+
+/* Burger (slėpti desktop’e) */
+.burger {
+  display: none;
+  position: relative;
+  width: 34px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.burger span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--text-primary);
+  transition: transform 0.25s, opacity 0.2s, top 0.25s;
+}
+.burger span:nth-child(1) {
+  top: 4px;
+}
+.burger span:nth-child(2) {
+  top: 13px;
+}
+.burger span:nth-child(3) {
+  top: 22px;
+}
+.open span:nth-child(1) {
+  top: 13px;
+  transform: rotate(45deg);
+}
+.open span:nth-child(2) {
+  opacity: 0;
+}
+.open span:nth-child(3) {
+  top: 13px;
+  transform: rotate(-45deg);
+}
+
+/* overlay kai atidaryta */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 900;
+}
+/* Focus matomumas */
+.burger:focus-visible,
+.navBar a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+/* ===== MOBILE < 900px ===== */
+@media (max-width: 900px) {
+  /* rodom burgerį, slepiam horizontalų meniu */
+  .burger {
+    display: inline-block;
+    z-index: 1001;
+  }
+  /* desktop list’ą paslepiam – mobiliai rodysim dropdown’ą */
+  .navBar {
+    display: none;
+  }
+
+  .nav {
+    position: absolute; /* <— prisiriša prie .menuRoot */
+    top: calc(100% + 8px); /* tiesiai po burgeriu */
+    right: 0; /* lygiuojam prie burgerio dešinio krašto */
+    left: auto;
+
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 1000;
+  }
+
+  .navOpen {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .navOpen .navBar {
+    display: flex; /* <— atsiranda tik kai open */
+    flex-direction: column;
+    gap: 0;
+    min-width: 220px;
+    margin: 0;
+    padding: 0.5rem 1rem 1rem;
+
+    background: linear-gradient(
+      180deg,
+      var(--header-grad-start) 0%,
+      var(--header-grad-end) 100%
+    );
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    animation: slideDown 0.25s ease;
+  }
+
+  .navBar li a {
+    display: block;
+    padding: 0.9rem 0.25rem;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-6px);
+      opacity: 0.85;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+  .burger span,
+  .nav,
+  .navOpen,
+  .navOpen .navBar {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+}

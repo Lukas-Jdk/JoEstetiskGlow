@@ -1,0 +1,130 @@
+/* Aukštis kaip turėjai */
+.hero {
+  background: var(--bg-main);
+}
+.full {
+  min-height: clamp(520px, 84.5vh, 900px);
+}
+.compact {
+  padding: 6rem 0;
+}
+.compact .media {
+  /* užtenka vienos iš šių – imu clamp, nes labiausiai „responsyvu“ */
+  height: clamp(360px, 70vh, 900px);
+  min-height: unset; /* anuliuoja min-height: inherit */
+}
+
+/* KONTEINERIS su max-width: 1400 */
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr minmax(520px, 60%); /* kairė / dešinė */
+  max-width: 1400px; /* <— PRAŠYTAS LIMITAS */
+  margin: 0 auto; /* centruojam */
+  padding: 0 2rem; /* kaip header */
+  min-height: inherit; /* perima iš .full */
+  align-items: center;
+  z-index: 2;
+}
+
+/* Kairė – tekstas */
+.text {
+  display: flex;
+  align-items: flex-start; /* 👈 buvo center – dabar aukščiau */
+  padding-top: 4rem;
+}
+.content {
+  width: 100%;
+  max-width: 680px;
+  color: var(--text-primary);
+  z-index: 3;
+}
+.title {
+  font-family: var(--font-playfair);
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap; /* vienoje eilutėje desktop'e */
+}
+.subtitle {
+  margin-top: 1rem;
+  font-size: clamp(1.1rem, 1.5vw, 1.7rem);
+  font-family: var(--font-montserrat);
+  color: var(--gold);
+}
+.btn {
+  margin-top: 1.5rem;
+  display: inline-block;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  background: var(--gold);
+  color: #1b1b1b;
+  text-decoration: none;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  font-family: var(--font-montserrat);
+}
+.btn:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+  color: var(--text-second);
+}
+
+/* Dešinė – nuotrauka konteineryje (ne full-bleed), bet pilno hero aukščio */
+.media {
+  position: relative;
+  min-height: inherit; /* 👈 BŪTINA: perima aukštį iš .grid/.full */
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1; /* buvo 55 – užteks 1 */
+}
+
+/* Next/Image */
+.img {
+  object-fit: contain;
+  object-position: right center;
+  inset: -1px 0 -1px 0 !important; /* <- uždengia plyšelį */
+  display: block;
+}
+
+/* Breakpoints */
+@media (max-width: 1200px) {
+  .title {
+    white-space: normal;
+  } /* kai nebetelpa – laužom */
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  
+  }
+  .media {
+    height: clamp(280px, 48vh, 560px);
+  }
+  .img {
+    object-fit: contain;
+    object-position: 50% center;
+  
+  }
+  .content {
+    text-align: center;
+    margin: auto;
+
+  }
+  .text {
+    padding-top: 0;
+  }
+  .compact .media {
+  /* užtenka vienos iš šių – imu clamp, nes labiausiai „responsyvu“ */
+  height: clamp(360px, 55vh, 640px);
+  min-height: unset; /* anuliuoja min-height: inherit */
+}
+}

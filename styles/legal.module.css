@@ -1,0 +1,36 @@
+/* app/legal.module.css */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+}
+
+.container h1 {
+  font-family: var(--font-playfair);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.container h2 {
+  font-family: var(--font-montserrat);
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--gold-deep);
+}
+
+.container p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-montserrat);
+}
+
+.container a {
+  color: var(--gold-deep);
+  text-decoration: underline;
+}

@@ -1,0 +1,151 @@
+.aboutSection {
+  background: var(--bg-page);
+  padding: 3rem 1rem;
+}
+
+/* Viršuje */
+.header {
+  max-width: var(--max-width);
+  margin: 0 auto 2.5rem auto;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-playfair);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.subheading {
+  font-family: var(--font-montserrat);
+  color: var(--gold);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 0.3rem;
+}
+
+/* Grid */
+.grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.imageBox {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  object-fit: cover;
+}
+
+/* Dešinė pusė */
+.contentBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* Balta kortelė su „Om meg“ tekstu */
+.textCard {
+  background: var(--bg-surface);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  padding: 1.8rem 1.6rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-playfair);
+  font-size: 1.2rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.paragraph {
+  font-family: var(--font-montserrat);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+/* Kortelė su ikonėlėmis */
+.benefitsBox {
+  background: var(--bg-surface);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  padding: 1.8rem;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.headingSm {
+  font-family: var(--font-playfair);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.benefits {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-montserrat);
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+.benefits li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  line-height: 1.5;
+}
+
+.icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ✅ Mobilus dizainas */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image {
+    max-width: 340px;
+  }
+
+  .contentBox {
+    align-items: center;
+    text-align: center;
+  }
+
+  .textCard,
+  .benefitsBox {
+    width: 100%;
+    text-align: left;
+  }
+}

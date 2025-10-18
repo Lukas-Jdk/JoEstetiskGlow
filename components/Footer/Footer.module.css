@@ -1,0 +1,37 @@
+/* Footer.module.css */
+.footerContainer {
+  background-color: var(--header-grad-end);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.02);
+  width: 100%;
+}
+
+.footerWrapper {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+  text-align: center;
+  color: var(--color-text-light);
+
+}
+
+.footerWrapper p {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+  font-family: var(--font-montserrat);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.footerWrapper p span {
+  color: var(--color-gold-light);
+}
+
+.footerWrapper a {
+  text-decoration: none;
+    margin: 0.4rem 0;
+  font-size: 0.9rem;
+  font-family: var(--font-montserrat);
+  color: var(--text-primary);
+  font-weight: 500;
+}

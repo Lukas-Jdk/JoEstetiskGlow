@@ -1,0 +1,157 @@
+/* components/TreatmentsCarousel/TreatmentsCarousel.module.css */
+.caruseleContainer {
+
+  padding: 4rem 2rem;
+}
+
+.carousel {
+  --radius: 16px;
+  --bg: #faeedf;
+  --surface: #fff7ec;
+  --text: #3d2f1f;
+  --muted: #7b6a57;
+  --gold: #caa24a;
+  max-width: 1400px;
+  margin: auto;
+  position: relative;
+  background-color: var(--bg-main);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 8px 28px var(--bg-main);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+.header h2 {
+  font-family: var(--font-playfair);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+.header p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.viewport {
+  overflow: hidden;
+  width: 100%;
+  --gap: 16px;
+  --card-width: 360px;
+ 
+}
+
+.track {
+  display: flex;
+  gap: var(--gap);
+  will-change: transform;
+
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  flex: 0 0 var(--card-width);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  padding-top: 90%;
+  background: #f4e6d2;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.body {
+  padding: 1rem 1rem 1.1rem;
+  color: var(--text);
+  display: grid;
+  gap: 1.5rem;
+}
+
+.title {
+
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.05rem;
+  display: grid;
+  gap: 0.25rem;
+  color: var(--muted);
+}
+.list li {
+  line-height: 1.3;
+
+  color: #3d2f1f;
+  font-size: 1.2rem;
+}
+
+.btn {
+  margin-top: 0.2rem;
+  text-align: center;
+  background: var(--gold);
+  color: #1b1b1b;
+  text-decoration: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover {
+  filter: brightness(0.95);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  color: white;
+}
+
+.footerDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+.dot,
+.dotActive {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.dotActive {
+  background: var(--gold);
+}
+
+@media (max-width: 1024px) {
+  .carousel {
+    padding: 1rem;
+   
+  }
+}
+@media (max-width: 640px) {
+ .header{
+  padding-bottom: 1.5rem;
+ }
+  .track {
+    gap: 0.7rem;
+  }
+}

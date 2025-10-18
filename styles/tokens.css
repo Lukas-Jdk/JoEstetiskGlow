@@ -1,0 +1,29 @@
+/* styles/tokens.css */
+:root {
+  /* Header gradient – priderintas prie logotipo */
+  --header-grad-start: #f1e2ad;
+  --header-grad-end: #dbb781;
+
+  /* Tekstas */
+  --text-primary: #31210b;
+  --text-second: #f1dfb1;
+
+  /* Auksas / akcentai */
+  --gold: #c9a34e;
+  --gold-deep: #b88a2f;
+
+  /* Fonas */
+  --bg-main: #fce7cb;
+  --bg-page: #f9f6f2; /* šampano fonas */
+  --bg-surface: #ffffff; /* kortelėms/sekcijoms */
+
+  /* Layout & tipografija */
+  --max-width: 1250px;
+  --radius: 12px;
+  --shadow-soft: 0 4px 18px rgba(0, 0, 0, 0.06);
+
+  --font-size-base: 16px;
+  --font-size-h1: 2.5rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.5rem;
+}
