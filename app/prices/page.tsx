@@ -7,13 +7,13 @@ import type { Metadata } from "next";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Priser | Estetisk Glow",
+  title: "Priser | Jo Estetisk Glow",
   description:
-    "Transparente priser på injeksjoner, hudbehandlinger og laser. Kvalitet og naturlige resultater hos Estetisk Glow i Oslo.",
+    "Transparente priser på injeksjoner, hudbehandlinger og laser. Kvalitet og naturlige resultater hos Jo Estetisk Glow i Oslo.",
   alternates: { canonical: "/prices" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Priser | Estetisk Glow",
+    title: "Priser | Jo Estetisk Glow",
     description:
       "Transparente priser på injeksjoner, hudbehandlinger og laser. Kvalitet og naturlige resultater.",
     url: "/prices",
@@ -69,17 +69,7 @@ export default function PricesPage() {
 
   return (
     <>
-      {/* Nematoma SEO: Breadcrumbs + FAQ */}
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-      />
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
-      />
+  
 
       <main className={styles.pricesContainer}>
         <div className={styles.page}>

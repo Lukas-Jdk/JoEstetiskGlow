@@ -2,11 +2,11 @@
 import type { Metadata } from "next";
 import styles from "@/styles/legal.module.css";
 import { info } from "@/data/info";
-import { site } from "@/data/site";
+
 
 export const metadata: Metadata = {
-  title: "Personvernerklæring | Estetisk Glow",
-  description: "Informasjon om hvordan Estetisk Glow behandler personopplysninger i henhold til GDPR.",
+  title: "Personvernerklæring | Jo Estetisk Glow",
+  description: "Informasjon om hvordan Jo Estetisk Glow behandler personopplysninger i henhold til GDPR.",
   alternates: { canonical: "/privacy" },
   robots: { index: false, follow: true },
 };

@@ -19,7 +19,7 @@ export default function AboutMe() {
         <div className={styles.imageBox}>
           <Image
             src="/omoss1.webp"
-            alt="Estetisk Glow – estetiske behandlinger i Oslo"
+            alt="Jo Estetisk Glow – estetiske behandlinger i Oslo"
             width={600}
             height={750}
             className={styles.image}

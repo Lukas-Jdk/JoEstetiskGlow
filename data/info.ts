@@ -1,6 +1,6 @@
 // data/info.ts
 export const info = {
-  name: "Estetisk Glow",
+  name: "Jo Estetisk Glow",
   email: "info@xxxxxx.no",
   phone: "+47 xxx xx xxx",
   address: "Trondheimsveien 391, 0953 Oslo",

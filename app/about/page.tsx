@@ -5,7 +5,7 @@ import AboutMe from "@/components/About/AboutMe";
 export const metadata = {
   title: "Om oss",
   description:
-    "Estetisk Glow – naturlige, trygge estetiske behandlinger i Oslo. Les om vår filosofi, trygghet og tilnærming.",
+    "Jo Estetisk Glow – naturlige, trygge estetiske behandlinger i Oslo. Les om vår filosofi, trygghet og tilnærming.",
   alternates: { canonical: "/about" },
 };
 

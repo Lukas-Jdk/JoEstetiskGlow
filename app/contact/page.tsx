@@ -6,12 +6,12 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Kontakt",
   description:
-    "Kontakt Estetisk Glow i Oslo for spørsmål og timebestilling. Adresse, telefon, e-post og åpningstider.",
+    "Kontakt Jo Estetisk Glow i Oslo for spørsmål og timebestilling. Adresse, telefon, e-post og åpningstider.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Kontakt | Estetisk Glow",
+    title: "Kontakt | Jo Estetisk Glow",
     description:
-      "Adresse, telefon og åpningstider. Kontakt Estetisk Glow for timebestilling.",
+      "Adresse, telefon og åpningstider. Kontakt Jo Estetisk Glow for timebestilling.",
     url: "/contact",
     type: "website",
   },

@@ -5,10 +5,10 @@ import styles from "./Logo.module.css";
 
 export default function Logo() {
   return (
-      <Link href="/" aria-label="Estetisk Glow — gå til forsiden" className={styles.logo}>
+      <Link href="/" aria-label="Jo Estetisk Glow — gå til forsiden" className={styles.logo}>
       <Image
         src="/logo11.png"
-        alt="Estetisk Glow — logo"
+        alt="Jo Estetisk Glow — logo"
         width={200}
         height={100}
         priority

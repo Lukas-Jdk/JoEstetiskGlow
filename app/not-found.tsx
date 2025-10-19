@@ -1,23 +1,13 @@
+// app/not-found.tsx
+import Link from "next/link";
+
 export default function NotFound() {
   return (
-    <main
-      style={{
-        maxWidth: "900px",
-        margin: "0 auto",
-        padding: "4rem 1.5rem",
-        textAlign: "center",
-      }}
-    >
-      <h1 style={{ textTransform: "uppercase", letterSpacing: ".5px" }}>
-        Siden finnes ikke
-      </h1>
-      <p style={{ marginTop: "1rem" }}>
-        Beklager, vi kunne ikke finne siden du lette etter.
-      </p>
-      <p style={{ marginTop: ".5rem" }}>
-        <a href="/" style={{ textDecoration: "underline" }}>
-          Gå til forsiden
-        </a>
+    <main style={{ padding: "4rem 1rem", textAlign: "center" }}>
+      <h1>Siden finnes ikke</h1>
+      <p>Beklager, vi fant ikke det du lette etter.</p>
+      <p>
+        <Link href="/">Til forsiden</Link>
       </p>
     </main>
   );

@@ -4,8 +4,8 @@ import styles from "@/styles/legal.module.css";
 import { info } from "@/data/info";
 
 export const metadata: Metadata = {
-  title: "Vilkår for bruk | Estetisk Glow",
-  description: "Bruksvilkår og ansvarsbegrensning for Estetisk Glow sin nettside.",
+  title: "Vilkår for bruk | Jo Estetisk Glow",
+  description: "Bruksvilkår og ansvarsbegrensning for Jo Estetisk Glow sin nettside.",
   alternates: { canonical: "/terms" },
   robots: { index: false, follow: true },
 };

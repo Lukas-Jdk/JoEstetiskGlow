@@ -1,5 +1,7 @@
+// components/Hero/Hero.tsx
 import Image from "next/image";
 import styles from "./Hero.module.css";
+import type { CSSProperties } from "react";
 
 type Align = "center" | "left" | "right";
 
@@ -7,7 +9,7 @@ interface HeroProps {
   title: string;
   subtitle?: string;
   image: string;
-  imageAlt?: string; 
+  imageAlt?: string;
   fullHeight?: boolean;
   overlay?: number;
   align?: Align;
@@ -15,6 +17,12 @@ interface HeroProps {
   cta?: { label: string; href: string };
   priority?: boolean;
 }
+
+// 👇 tipas su CSS kintamaisiais
+type MediaStyle = CSSProperties & {
+  ["--focal-x"]?: string;
+  ["--overlay"]?: number;
+};
 
 export default function Hero({
   title,
@@ -28,9 +36,15 @@ export default function Hero({
   cta,
   priority = false,
 }: HeroProps) {
-   const isExternal = /^https?:\/\//i.test(cta?.href ?? "");
+  const isExternal = /^https?:\/\//i.test(cta?.href ?? "");
+
+  const mediaStyle: MediaStyle = {
+    ["--focal-x"]: focalX,
+    ["--overlay"]: overlay,
+  };
+
   return (
-     <section
+    <section
       className={[styles.hero, fullHeight ? styles.full : styles.compact].join(" ")}
       aria-labelledby="hero-title"
       role="region"
@@ -42,30 +56,20 @@ export default function Hero({
             {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
             {cta && (
               isExternal ? (
-                <a
-                  className={styles.btn}
-                  href={cta.href}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                >
+                <a className={styles.btn} href={cta.href} target="_blank" rel="noopener noreferrer nofollow">
                   {cta.label} <span className="sr-only">(åpnes i ny fane)</span>
                 </a>
               ) : (
-                <a className={styles.btn} href={cta.href}>
-                  {cta.label}
-                </a>
+                <a className={styles.btn} href={cta.href}>{cta.label}</a>
               )
             )}
           </div>
         </div>
 
-        <div
-          className={styles.media}
-          style={{ ["--focal-x" as any]: focalX, ["--overlay" as any]: overlay }}
-        >
+        <div className={styles.media} style={mediaStyle}>
           <Image
             src={image}
-            alt={imageAlt ?? ""}   // jei nepaduota — dekoratyvu
+            alt={imageAlt ?? ""}
             fill
             priority={priority}
             sizes="(max-width: 900px) 100vw, (max-width: 1400px) 48vw, 672px"

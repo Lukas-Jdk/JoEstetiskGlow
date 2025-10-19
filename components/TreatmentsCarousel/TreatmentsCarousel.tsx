@@ -1,6 +1,7 @@
+// components/TreatmentsCarousel.tsx
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import styles from "./TreatmentsCarousel.module.css";
 
@@ -15,8 +16,15 @@ export type TreatmentItem = {
 
 type Props = {
   items: TreatmentItem[];
+  /** Horizontalus slinkimo greitis px/s (desktop). Mobile gauna 0.75x. */
   speedPxPerSec?: number;
   className?: string;
+};
+
+/** Tipas style prop'ui su CSS var'ais (be `any`). */
+type ViewportVars = CSSProperties & {
+  ["--gap"]?: string;
+  ["--card-width"]?: string;
 };
 
 export default function TreatmentsCarousel({
@@ -24,24 +32,24 @@ export default function TreatmentsCarousel({
   speedPxPerSec = 60,
   className,
 }: Props) {
-  const viewportRef = useRef<HTMLDivElement | null>(null);
-  const trackRef = useRef<HTMLDivElement | null>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
   const [perView, setPerView] = useState(3);
   const [cardWidth, setCardWidth] = useState(300);
   const [gapPx, setGapPx] = useState(16);
 
-  // Didesnė kopijų seka sklandžiam loop'ui
+  // Didesnė kopijų seka sklandžiam "loop'ui"
   const extended = useMemo(() => [...items, ...items, ...items], [items]);
 
-  // Layout skaičiavimai
+  // Išdėstymo skaičiavimai (kortelės plotis, gap, perView)
   useEffect(() => {
     const recalc = () => {
       const vp = viewportRef.current;
       const tr = trackRef.current;
       if (!vp || !tr) return;
 
-      const vw = vp.clientWidth || vp.getBoundingClientRect().width || window.innerWidth;
+      const vw = vp.clientWidth || vp.getBoundingClientRect().width;
       const pv = vw <= 640 ? 1 : vw <= 1024 ? 2 : 3;
       setPerView(pv);
 
@@ -64,7 +72,7 @@ export default function TreatmentsCarousel({
     };
   }, []);
 
-  // Nuolatinis slinkimas į kairę (RAF)
+  // Nuolatinis slinkimas į kairę (requestAnimationFrame)
   const [translateX, setTranslateX] = useState(0);
   const hoverRef = useRef(false);
   const rafRef = useRef<number | null>(null);
@@ -74,7 +82,7 @@ export default function TreatmentsCarousel({
     const stepPx = cardWidth + gapPx;
     const oneSetWidth = items.length * stepPx;
     const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches;
-    const speed = (isMobile ? speedPxPerSec * 0.75 : speedPxPerSec);
+    const speed = isMobile ? speedPxPerSec * 0.75 : speedPxPerSec; // mobile lėčiau
     const speedPerMs = speed / 1000;
 
     const tick = (ts: number) => {
@@ -83,10 +91,9 @@ export default function TreatmentsCarousel({
       lastTsRef.current = ts;
 
       if (!hoverRef.current) {
-        setTranslateX((prev) => {
+        setTranslateX(prev => {
           let next = prev - dt * speedPerMs; // judam į kairę
-          // kai nuvažiavom daugiau nei vieno rinkinio plotis — grąžinam
-          if (Math.abs(next) >= oneSetWidth) next += oneSetWidth;
+          if (Math.abs(next) >= oneSetWidth) next += oneSetWidth; // "wrap"
           return next;
         });
       }
@@ -103,18 +110,24 @@ export default function TreatmentsCarousel({
 
   // Aktyvus indeksas (dot’ams)
   const stepPx = cardWidth + gapPx;
-  const normalized = ((-translateX % (items.length * stepPx)) + (items.length * stepPx)) % (items.length * stepPx);
+  const total = items.length * stepPx;
+  const normalized = ((-translateX % total) + total) % total;
   const activeIndex = Math.floor(normalized / stepPx) % items.length;
 
-  // Peršokimas į konkrečią kortelę (spaudžiant dot)
+  // Peršokimas į konkrečią kortelę (paspaudus dot) + 2s pauzė
   const jumpTo = (i: number) => {
-    hoverRef.current = true; // pauzė
+    hoverRef.current = true;
     setTranslateX(-i * stepPx);
-    // po 2s vėl paleidžiam slinktį
     setTimeout(() => {
       hoverRef.current = false;
       lastTsRef.current = null;
     }, 2000);
+  };
+
+  // CSS var'ai be `any`
+  const viewportStyle: ViewportVars = {
+    ["--gap"]: `${gapPx}px`,
+    ["--card-width"]: `${cardWidth}px`,
   };
 
   return (
@@ -128,16 +141,7 @@ export default function TreatmentsCarousel({
           <h2>Behandlinger</h2>
         </div>
 
-        <div
-          ref={viewportRef}
-          className={styles.viewport}
-          style={
-            {
-              ["--gap" as any]: `${gapPx}px`,
-              ["--card-width" as any]: `${cardWidth}px`,
-            } as React.CSSProperties
-          }
-        >
+        <div ref={viewportRef} className={styles.viewport} style={viewportStyle}>
           <div
             ref={trackRef}
             className={styles.track}
@@ -172,18 +176,21 @@ export default function TreatmentsCarousel({
           </div>
         </div>
 
-        {/* ✅ Dots grąžinti – gali peršokti į reikiamą kortelę */}
+        {/* Dots – peršokimas į pasirinktą kortelę */}
         <div className={styles.footerDots}>
-          {items.map((_, i) => (
-            <button
-              type="button"
-              key={i}
-              className={i === activeIndex ? styles.dotActive : styles.dot}
-              onClick={() => jumpTo(i)}
-              aria-label={`Gå til element ${i + 1}`}
-              aria-selected={i === activeIndex}
-            />
-          ))}
+          {items.map((_, i) => {
+            const active = i === activeIndex;
+            return (
+              <button
+                type="button"
+                key={i}
+                className={active ? styles.dotActive : styles.dot}
+                onClick={() => jumpTo(i)}
+                aria-label={`Gå til element ${i + 1}`}
+                aria-pressed={active}   /* vietoj aria-selected */
+              />
+            );
+          })}
         </div>
       </div>
     </section>

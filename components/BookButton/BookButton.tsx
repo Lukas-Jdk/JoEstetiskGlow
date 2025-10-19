@@ -1,4 +1,4 @@
-// components/BookButton.tsx
+// components/BookButton/BookButton.tsx
 import { site } from "@/data/site";
 
 type Props = {
@@ -6,20 +6,15 @@ type Props = {
   className?: string;
 };
 
-export default function BookButton({ label = "Bestill time", className = "" }) {
-  const href = site.timmaUrl;
+export default function BookButton({ label = "Bestill time", className = "" }: Props) {
   return (
     <a
-      href={href}
+      href={site.timmaUrl}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener noreferrer nofollow"
       className={className}
-      aria-describedby="external-note"
     >
       {label}
-      <span id="external-note" className="sr-only">
-        (åpnes i ny fane)
-      </span>
     </a>
   );
 }
