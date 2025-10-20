@@ -43,6 +43,19 @@ export default function Hero({
     ["--overlay"]: overlay,
   };
 
+  // helper – vienas <a> markup kuris panaudojamas abiem vietom
+  const CTA =
+    cta &&
+    (isExternal ? (
+      <a className={styles.btn} href={cta.href} target="_blank" rel="noopener noreferrer nofollow">
+        {cta.label} <span className="sr-only">(åpnes i ny fane)</span>
+      </a>
+    ) : (
+      <a className={styles.btn} href={cta.href}>
+        {cta.label}
+      </a>
+    ));
+
   return (
     <section
       className={[styles.hero, fullHeight ? styles.full : styles.compact].join(" ")}
@@ -50,22 +63,16 @@ export default function Hero({
       role="region"
     >
       <div className={styles.grid}>
+        {/* Tekstas (desktop – čia CTA) */}
         <div className={[styles.text, styles[`align-${align}`]].join(" ")}>
           <div className={styles.content}>
             <h1 id="hero-title" className={styles.title}>{title}</h1>
             {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-            {cta && (
-              isExternal ? (
-                <a className={styles.btn} href={cta.href} target="_blank" rel="noopener noreferrer nofollow">
-                  {cta.label} <span className="sr-only">(åpnes i ny fane)</span>
-                </a>
-              ) : (
-                <a className={styles.btn} href={cta.href}>{cta.label}</a>
-              )
-            )}
+            {CTA && <div className={styles.ctaDesktop}>{CTA}</div>}
           </div>
         </div>
 
+        {/* Nuotrauka */}
         <div className={styles.media} style={mediaStyle}>
           <Image
             src={image}
@@ -76,6 +83,9 @@ export default function Hero({
             className={styles.img}
           />
         </div>
+
+        {/* CTA – mobile po nuotrauka */}
+        {CTA && <div className={styles.ctaMobile}>{CTA}</div>}
       </div>
     </section>
   );

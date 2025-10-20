@@ -44,6 +44,7 @@ export default function ContactSection() {
                 </IconBox>
                 <div className={styles.itemBody}>
                   <strong>Adresse:</strong>
+                  <span>Kalbakken Helse Hus</span>
                   <span>{info.address ?? "—"}</span>
                 </div>
               </li>

@@ -17,7 +17,7 @@
 .header h2 {
   font-family: var(--font-playfair);
   font-weight: 600;
-  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   color: var(--text-primary);
   text-transform: uppercase;
 }

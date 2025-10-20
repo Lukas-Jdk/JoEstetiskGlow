@@ -94,7 +94,8 @@
   inset: -1px 0 -1px 0 !important; /* <- uždengia plyšelį */
   display: block;
 }
-
+.ctaDesktop { display: inline-block; } /* desktop */
+.ctaMobile  { display: none; }    
 /* Breakpoints */
 @media (max-width: 1200px) {
   .title {
@@ -104,27 +105,41 @@
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
-  
+    grid-template-areas:
+      "text"
+      "media"
+      "cta";
   }
+
   .media {
+    grid-area: media;
     height: clamp(280px, 48vh, 560px);
+  }
+  .text {
+    grid-area: text;
+    padding-top: 0;
+  }
+
+  .ctaDesktop { display: none; }
+  .ctaMobile  {
+    grid-area: cta;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 2rem;
   }
   .img {
     object-fit: contain;
     object-position: 50% center;
-  
+    padding-top: 1rem;
   }
   .content {
     text-align: center;
     margin: auto;
+  }
 
-  }
-  .text {
-    padding-top: 0;
-  }
   .compact .media {
-  /* užtenka vienos iš šių – imu clamp, nes labiausiai „responsyvu“ */
-  height: clamp(360px, 55vh, 640px);
-  min-height: unset; /* anuliuoja min-height: inherit */
-}
+    /* užtenka vienos iš šių – imu clamp, nes labiausiai „responsyvu“ */
+    height: clamp(360px, 55vh, 640px);
+    min-height: unset; /* anuliuoja min-height: inherit */
+  }
 }
