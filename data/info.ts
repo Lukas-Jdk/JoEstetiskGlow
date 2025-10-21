@@ -1,8 +1,8 @@
 // data/info.ts
 export const info = {
   name: "Jo Estetisk Glow",
-  email: "info@xxxxxx.no",
-  phone: "+47 xxx xx xxx",
+  email: "jjucaite@yahoo.com",
+  phone: "+47 454 38 788",
   address: "Trondheimsveien 391, 0953 Oslo",
   timmaUrl: "https://www.timma.no/salong/klinikk-resplandor-as",
   hours: [

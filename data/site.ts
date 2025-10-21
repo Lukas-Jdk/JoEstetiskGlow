@@ -3,8 +3,8 @@ export const site = {
   timmaUrl: "https://www.timma.no/salong/klinikk-resplandor-as",
 
   // 🔽 nauja
-  siteUrl: "https://www.estetiskglow.no", // <- įrašyk tikrą domeną kai turėsi
-  brand: "Estetisk Glow",
+  siteUrl: "https://www.joestetiskglow.no", // <- įrašyk tikrą domeną kai turėsi
+  brand: "Jo Estetisk Glow",
   defaultDescription:
     "Naturlige resultater med estetiske behandlinger i Oslo. Trygt, profesjonelt og personlig.",
   social: {
@@ -13,7 +13,7 @@ export const site = {
   },
   assets: {
     logo: "/logo11.png",
-    ogImage: "/og-home.jpg", // įkelk į /public (1200×630 rekomenduojama)
+    ogImage: "/og-home.png", // įkelk į /public (1200×630 rekomenduojama)
     favicon: "/favicon.ico"
   }
 } as const;
