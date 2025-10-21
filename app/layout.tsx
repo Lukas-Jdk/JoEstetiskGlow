@@ -24,7 +24,7 @@ const greatVibes = Great_Vibes({
   variable: "--font-greatvibes",
 });
 
-/** ✅ Viewport (čia turi būti themeColor) */
+/** ✅ Viewport */
 export const viewport: Viewport = {
   themeColor: "#ffffff",
   colorScheme: "light",
@@ -32,38 +32,49 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-/** ✅ Globali metadata (be themeColor) */
+/** ✅ Globali metadata su absoliučiais URL (per metadataBase) */
+const ogImage = site.assets.ogImage || "/og-home.png"; // fallback jei paliktum tuščią
+
 export const metadata: Metadata = {
-  metadataBase: new URL(site.siteUrl),
+  metadataBase: new URL(site.siteUrl), // -> visi santykiniai keliai taps absoliutūs
   title: {
     default: site.brand,
     template: `%s | ${site.brand}`,
   },
   description: site.defaultDescription,
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: site.siteUrl, // absoliutus canonical
+  },
   robots: { index: true, follow: true },
-  icons: { icon: site.assets.favicon },
+  icons: { icon: site.assets.favicon || "/favicon.ico" },
+
   openGraph: {
+    type: "website",
+    locale: "nb_NO", // arba "no_NO" – abu ok
+    url: site.siteUrl, // pilnas URL
+    siteName: site.brand,
     title: site.brand,
     description: site.defaultDescription,
-    url: "/",
-    siteName: site.brand,
-    locale: "no_NO",
-    type: "website",
-    images: site.assets.ogImage
-      ? [{ url: site.assets.ogImage, width: 1200, height: 630, alt: `${site.brand} – forsiden` }]
-      : undefined,
+    images: [
+      {
+        url: ogImage, // '/og-home.png' -> pavirs į https://www.joestetiskglow.no/og-home.png
+        width: 1200,
+        height: 630,
+        alt: `${site.brand} – forsiden`,
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: site.brand,
     description: site.defaultDescription,
-    images: site.assets.ogImage ? [site.assets.ogImage] : undefined,
+    images: [ogImage], // ir čia taps absoliutus dėl metadataBase
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // ✅ LocalBusiness JSON-LD (paprasta versija)
+  // ✅ LocalBusiness JSON-LD
   const hours = (info.hours || []).map((h) => {
     const [opens, closes] = (h.time || "").split("–");
     return {
@@ -79,7 +90,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "LocalBusiness",
     name: info.name || site.brand,
     url: site.siteUrl,
-    image: site.assets.logo ? new URL(site.assets.logo, site.siteUrl).toString() : undefined,
+    image: site.assets.logo
+      ? new URL(site.assets.logo, site.siteUrl).toString()
+      : new URL("/og-home.png", site.siteUrl).toString(),
     telephone: info.phone,
     email: info.email,
     address: {
@@ -95,7 +108,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="no">
       <body className={`${playfair.variable} ${montserrat.variable} ${greatVibes.variable}`}>
-        {/* Skip link (a11y) */}
         <a href="#main-content" className="skip-link">Hopp til innhold</a>
 
         {/* JSON-LD */}
