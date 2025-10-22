@@ -44,6 +44,13 @@ export default function AboutPage() {
             fagpersoner for å sikre trygghet og best mulig resultat.
           </p>
         </section>
+         {/* Viktig å vite */}
+        <section className={styles.section}>
+          <h2 className={styles.h2}>Aldersgrense 18 år</h2>
+          <p className={styles.text}>
+           Behandlingene er kun for personer over 18 år.
+          </p>
+        </section>
 
       
       </main>

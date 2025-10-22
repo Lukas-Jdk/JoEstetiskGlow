@@ -18,15 +18,29 @@ function IconBox({
 }
 
 export default function ContactSection() {
+  // Adresai žemėlapiams (antrą galima laikyti iš info.address2 jeigu turėsi)
+  const address1Label = "Kalbakken Helse Hus";
+  const address1 = info.address ?? "—";
+
+  const address2Label = "Klinikk Resplandor";
+  const address2 = (info as any).address2 || "Solgansbrisen 5, 1364 Fornebu"; // fallback, kol nėra info.address2
+
+  const hasAddress2 = Boolean(address2 && address2 !== "—");
+
   return (
-    <section className={styles.section} id="kontakt" aria-labelledby="contact-title">
+    <section
+      className={styles.section}
+      id="kontakt"
+      aria-labelledby="contact-title"
+    >
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h2>Kontakt oss</h2>
+          <h2 id="contact-title">Kontakt oss</h2>
           <div className={styles.dots} aria-hidden />
         </header>
 
         <div className={styles.grid}>
+          {/* Kairė kortelė */}
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Kontaktinformasjon</h3>
 
@@ -43,9 +57,27 @@ export default function ContactSection() {
                   </svg>
                 </IconBox>
                 <div className={styles.itemBody}>
-                  <strong>Adresse:</strong>
-                  <span>Kalbakken Helse Hus</span>
-                  <span>{info.address ?? "—"}</span>
+                  <strong>Adresse 1:</strong>
+                  <span>{address1Label}</span>
+                  <span>{address1}</span>
+                </div>
+              </li>
+
+              <li>
+                <IconBox label="Adresse">
+                  {/* location pin */}
+                  <svg
+                    viewBox="0 0 24 24"
+                    className={styles.icon}
+                    aria-hidden="true"
+                  >
+                    <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12zm0-9a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                  </svg>
+                </IconBox>
+                <div className={styles.itemBody}>
+                  <strong>Adresse 2:</strong>
+                  <span>{address2Label}</span>
+                  <span>{address2}</span>
                 </div>
               </li>
 
@@ -82,8 +114,35 @@ export default function ContactSection() {
                   <a href={`mailto:${info.email}`}>{info.email}</a>
                 </div>
               </li>
-            </ul>
+        
 
+            <li>
+              <IconBox label="Facebook">
+                {/* Facebook */}
+                <svg
+                  viewBox="0 0 24 24"
+                  className={styles.icon}
+                  aria-hidden="true"
+                >
+                  <path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06C2 17.08 5.66 21.2 10.44 22v-7.01H7.9v-2.93h2.54V9.84c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.86h2.78l-.44 2.93h-2.34V22C18.34 21.2 22 17.08 22 12.06z" />
+                </svg>
+              </IconBox>
+              <div className={styles.itemBody}>
+                <strong>Facebook:</strong>
+                <a className={styles.facebook}
+                  href={
+                    (info as any)?.social?.facebook ??
+                    "https://www.facebook.com/kunoirsielosterapija"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {(info as any)?.social?.facebook ??
+                    "facebook.com/kunoirsielosterapija"}
+                </a>
+              </div>
+            </li>
+    </ul>
             {info.hours && (
               <div className={styles.hours}>
                 <h4 className={styles.hoursTitle}>Åpningstider</h4>
@@ -91,13 +150,17 @@ export default function ContactSection() {
                 <div className={styles.hoursRow}>
                   <IconBox label="Åpningstider">
                     {/* clock */}
-                    <svg viewBox="0 0 24 24" className={styles.icon} aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className={styles.icon}
+                      aria-hidden="true"
+                    >
                       <path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm1-10.6V7h-2v6l5 3 .9-1.8-3.9-2.8z" />
                     </svg>
                   </IconBox>
 
                   <ul className={styles.hoursList}>
-                    {info.hours.map((h, i) => (
+                    {info.hours.map((h: any, i: number) => (
                       <li key={i} className={styles.hoursItem}>
                         <span className={styles.day}>{h.day}</span>
                         <span className={styles.time}>{h.time}</span>
@@ -113,19 +176,43 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Google Maps Embed */}
-          <div className={styles.mapBox}>
-            <iframe
-              title={`Kart over ${info.name} — ${info.address}`}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(
-                info.address
-              )}&output=embed`}
-              width="600"
-              height="450"
-            />
+          {/* Dešinė – dvigubas Maps grid */}
+          <div className={styles.mapGrid} aria-label="Kart over begge adresser">
+            {/* Map 1 */}
+            <div className={styles.mapBox}>
+              <div className={styles.mapHead}>
+                <strong className={styles.mapTitle}>{address1Label}</strong>
+                <span className={styles.mapAddress}>{address1}</span>
+              </div>
+              <iframe
+                title={`Kart over ${address1Label} — ${address1}`}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com/maps?q=${encodeURIComponent(
+                  address1
+                )}&output=embed`}
+              />
+            </div>
+
+            {/* Map 2 (rodom tik jei turime antrą adresą) */}
+            {hasAddress2 && (
+              <div className={styles.mapBox}>
+                <div className={styles.mapHead}>
+                  <strong className={styles.mapTitle}>{address2Label}</strong>
+                  <span className={styles.mapAddress}>{address2}</span>
+                </div>
+                <iframe
+                  title={`Kart over ${address2Label} — ${address2}`}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(
+                    address2
+                  )}&output=embed`}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

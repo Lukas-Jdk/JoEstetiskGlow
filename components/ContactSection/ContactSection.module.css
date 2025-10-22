@@ -1,5 +1,5 @@
 /* components/ContactSection.module.css */
-/* remiasi styles/tokens.css kintamaisiais */
+
 .section {
   background: linear-gradient(180deg, var(--bg-main), var(--bg-page));
   padding: 3rem 1rem;
@@ -199,6 +199,8 @@ justify-content: center;
   background: var(--bg-surface);
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-rows: auto 1fr; /* header + iframe */
 }
 
 .mapBox iframe {
@@ -207,8 +209,35 @@ justify-content: center;
   border: 0;
   display: block;
 }
+/* --- MAP GRID (nauja) --- */
+.mapGrid {
+  display: grid;
+  grid-template-columns: 1fr;      /* du žemėlapiai per pusę */
+  gap: 1rem;
+  align-content: start;
+}
 
+.mapHead {
+  padding: .75rem .9rem .5rem .9rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: linear-gradient(180deg, #fffaf2, #fff);
+}
 
+.mapTitle {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.mapAddress {
+  display: block;
+  font-size: .95rem;
+  color: rgba(49, 33, 11, 0.75);
+}
+.facebook {
+  cursor: pointer;
+}
 /* responsive */
 @media (max-width: 900px) {
   .grid {
