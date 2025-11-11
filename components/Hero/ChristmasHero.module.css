@@ -1,62 +1,64 @@
-/* Aukštis kaip turėjai */
 .hero {
-   background: url("/kaledos.png");
-   background-size: cover;
-   background-repeat: no-repeat;
-     position: relative;
+  position: relative;
+  background: url("/kaledos.webp") center top / cover no-repeat;
+  color: var(--text-primary);
 }
 
 .full {
   min-height: clamp(520px, 84.5vh, 900px);
 }
-.compact {
-  padding: 6rem 0;
-}
-.compact .media {
-  /* užtenka vienos iš šių – imu clamp, nes labiausiai „responsyvu“ */
-  height: clamp(360px, 70vh, 900px);
-  min-height: unset; /* anuliuoja min-height: inherit */
+
+/* Šakelių sluoksniai – virš modelio, bet žemiau teksto/CTA */
+.branchesTop,
+.branchesBottom {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-/* KONTEINERIS su max-width: 1400 */
+/* vidus */
 .grid {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr minmax(520px, 60%); /* kairė / dešinė */
-  max-width: 1400px; /* <— PRAŠYTAS LIMITAS */
-  margin: 0 auto; /* centruojam */
-  padding: 0 2rem; /* kaip header */
-  min-height: inherit; /* perima iš .full */
+  grid-template-columns: 1fr minmax(520px, 60%);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  min-height: inherit;
   align-items: center;
-  z-index: 2;
+  z-index: 2; /* po šakelėmis */
 }
 
-/* Kairė – tekstas */
 .text {
   display: flex;
-  align-items: flex-start; /* 👈 buvo center – dabar aukščiau */
+  align-items: flex-start;
   padding-top: 4rem;
 }
 .content {
   width: 100%;
   max-width: 680px;
-  color: var(--text-primary);
-  z-index: 3;
-}
+  position: relative;
+  z-index: 4;
+} /* virš šakelių */
 .title {
   font-family: var(--font-playfair);
-  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-size: clamp(2.2rem, 4vw, 3rem);
   letter-spacing: 0.5px;
   text-transform: uppercase;
   font-weight: 500;
-  white-space: nowrap; /* vienoje eilutėje desktop'e */
+    white-space: normal; /* leidžia laužytis */
+ 
+ 
 }
 .subtitle {
   margin-top: 1rem;
   font-size: clamp(1.1rem, 1.5vw, 1.7rem);
-  font-family: var(--font-montserrat);
   color: var(--gold);
 }
+
 .btn {
   margin-top: 1.5rem;
   display: inline-block;
@@ -67,7 +69,6 @@
   color: #1b1b1b;
   text-decoration: none;
   transition: transform 0.15s ease, filter 0.15s ease;
-  font-family: var(--font-montserrat);
 }
 .btn:hover {
   filter: brightness(0.95);
@@ -75,34 +76,32 @@
   color: var(--text-second);
 }
 
-/* Dešinė – nuotrauka konteineryje (ne full-bleed), bet pilno hero aukščio */
 .media {
   position: relative;
-  min-height: inherit; /* 👈 BŪTINA: perima aukštį iš .grid/.full */
+min-height: unset;
+  height: clamp(480px, 60vh, 820px);
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+  z-index: 2; /* po šakelių */
 }
-.media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1; /* buvo 55 – užteks 1 */
-}
-
-/* Next/Image */
 .img {
   object-fit: contain;
   object-position: right center;
-  inset: -1px 0 -1px 0 !important; /* <- uždengia plyšelį */
+  inset: -1px 0 -1px 0 !important;
   display: block;
 }
-.ctaDesktop { display: inline-block; } /* desktop */
-.ctaMobile  { display: none; }    
-/* Breakpoints */
+
+.ctaDesktop {
+  display: inline-block;
+}
+.ctaMobile {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   .title {
+    padding-top: 2rem;
     white-space: normal;
   } /* kai nebetelpa – laužom */
 }

@@ -3,7 +3,7 @@
 /* app/prices/page.module.css */
 
 .pricesContainer {
-  background-color: var(--bg-main);
+  background: url("/kaledos2.png") center top / cover no-repeat;
 }
 
 .page {

@@ -1,6 +1,6 @@
 // app/page.tsx
 import type { Metadata } from "next";
-import Hero from "../components/Hero/Hero";
+import ChristmasHero from "@/components/Hero/ChristmasHero";
 import TreatmentsCarousel from "@/components/TreatmentsCarousel/TreatmentsCarousel";
 import ContactSection from "@/components/ContactSection/ContactSection";
 import AboutMe from "@/components/About/AboutMe";
@@ -27,12 +27,11 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Hero
-        title="Jo Estetisk Glow"
+      <ChristmasHero
+  title="Jule tilbudet opp til 60%!!  På alle prosedyrer"
         subtitle="Glow With Confidence"
         image="/hero3.png"
         imageAlt="Jo Estetisk Glow klinikk – estetiske behandlinger i Oslo"
-       fullHeight={false}
         align="left"
         priority
         cta={{ label: "Bestill time", href: site.timmaUrl }}

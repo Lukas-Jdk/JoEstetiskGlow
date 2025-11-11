@@ -1,7 +1,7 @@
 /* components/ContactSection.module.css */
 
 .section {
-  background: linear-gradient(180deg, var(--bg-main), var(--bg-page));
+  background: url("/kaledos.webp") center top / cover no-repeat;
   padding: 3rem 1rem;
 
 }
