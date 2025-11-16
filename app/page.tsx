@@ -28,7 +28,7 @@ export default function Page() {
   return (
     <>
       <ChristmasHero
-  title="Jule tilbudet opp til 60%!!  På alle prosedyrer"
+  title="Jule tilbudet opp til 50%!!  På alle prosedyrer"
         subtitle="Glow With Confidence"
         image="/hero3.png"
         imageAlt="Jo Estetisk Glow klinikk – estetiske behandlinger i Oslo"
