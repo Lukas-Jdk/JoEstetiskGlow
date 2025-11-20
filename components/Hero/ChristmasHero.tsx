@@ -1,5 +1,7 @@
+// components/ChristmasHero/ChristmasHero.tsx
 import Image from "next/image";
 import styles from "./ChristmasHero.module.css";
+import GaveKort from "@/components/BookButton/GaveKort";
 
 type Align = "left" | "center" | "right";
 
@@ -23,19 +25,27 @@ export default function ChristmasHero({
   priority,
 }: Props) {
   const isExternal = /^https?:\/\//i.test(cta?.href ?? "");
-  const CTA =
-    cta &&
-    (isExternal ? (
+
+  const MainCTA = cta ? (
+    isExternal ? (
       <a className={styles.btn} href={cta.href} target="_blank" rel="noopener noreferrer nofollow">
         {cta.label}
       </a>
     ) : (
       <a className={styles.btn} href={cta.href}>{cta.label}</a>
-    ));
+    )
+  ) : null;
+
+  const CTAGroup =
+    MainCTA && (
+      <div className={styles.ctaGroup}>
+        {MainCTA}
+        <GaveKort className={styles.btn} label="Bestill gavekort" />
+      </div>
+    );
 
   return (
     <section className={[styles.hero, styles.full].join(" ")} aria-labelledby="xmas-hero-title">
-      {/* šakelės kaip atskiri sluoksniai */}
       <div className={styles.branchesTop} aria-hidden />
       <div className={styles.branchesBottom} aria-hidden />
 
@@ -44,7 +54,7 @@ export default function ChristmasHero({
           <div className={styles.content}>
             <h1 id="xmas-hero-title" className={styles.title}>{title}</h1>
             {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-            {CTA && <div className={styles.ctaDesktop}>{CTA}</div>}
+            {CTAGroup && <div className={styles.ctaDesktop}>{CTAGroup}</div>}
           </div>
         </div>
 
@@ -59,7 +69,8 @@ export default function ChristmasHero({
           />
         </div>
 
-        {CTA && <div className={styles.ctaMobile}>{CTA}</div>}
+        {/* CTA mobile */}
+        {CTAGroup && <div className={styles.ctaMobile}>{CTAGroup}</div>}
       </div>
     </section>
   );

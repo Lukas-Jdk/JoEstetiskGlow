@@ -1,9 +1,9 @@
 /* Aukštis kaip turėjai */
 .hero {
-   background: url("/kaledos.png");
-   background-size: cover;
-   background-repeat: no-repeat;
-     position: relative;
+  background: url("/kaledos.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
 .full {
@@ -98,8 +98,13 @@
   inset: -1px 0 -1px 0 !important; /* <- uždengia plyšelį */
   display: block;
 }
-.ctaDesktop { display: inline-block; } /* desktop */
-.ctaMobile  { display: none; }    
+
+.ctaDesktop {
+  display: inline-block;
+} /* desktop */
+.ctaMobile {
+  display: none;
+}
 /* Breakpoints */
 @media (max-width: 1200px) {
   .title {
@@ -124,8 +129,10 @@
     padding-top: 0;
   }
 
-  .ctaDesktop { display: none; }
-  .ctaMobile  {
+  .ctaDesktop {
+    display: none;
+  }
+  .ctaMobile {
     grid-area: cta;
     display: flex;
     justify-content: center;
