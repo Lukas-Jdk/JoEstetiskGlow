@@ -28,7 +28,7 @@ export default function Page() {
   return (
     <>
       <ChristmasHero
-  title="Jule tilbudet opp til 50%!!  På alle prosedyrer"
+  title="Feir Kjærligheten hos Joestetisk Glow,,,Spesieltilbud til Velentinsdagen,,Våres eksklusive behandlibger får deg til å stråle for deg selv og en du er glad i ,,,"
         subtitle="Glow With Confidence"
         image="/hero3.png"
         imageAlt="Jo Estetisk Glow klinikk – estetiske behandlinger i Oslo"

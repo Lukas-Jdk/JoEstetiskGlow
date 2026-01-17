@@ -1,11 +1,23 @@
+/* components/ChristmasHero/ChristmasHero.module.css */
+
+/* ====== HERO + BACKGROUND ====== */
 .hero {
   position: relative;
-  background: url("/kaledos.webp") center top / cover no-repeat;
   color: var(--text-primary);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/valentino.webp") center top / cover no-repeat;
+  pointer-events: none;
 }
 
 .full {
   min-height: clamp(520px, 84.5vh, 900px);
+  overflow: hidden;
 }
 
 /* Šakelių sluoksniai – virš modelio, bet žemiau teksto/CTA */
@@ -19,7 +31,7 @@
   background-size: contain;
 }
 
-/* vidus */
+/* ====== GRID LAYOUT ====== */
 .grid {
   position: relative;
   display: grid;
@@ -29,7 +41,7 @@
   padding: 0 2rem;
   min-height: inherit;
   align-items: center;
-  z-index: 2; /* po šakelėmis */
+  z-index: 2; /* virš fono */
 }
 
 .text {
@@ -37,28 +49,108 @@
   align-items: flex-start;
   padding-top: 4rem;
 }
+
+.align-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+.align-center {
+  justify-content: center;
+  text-align: center;
+}
+.align-right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* ====== TEXT BLOCK ====== */
 .content {
   width: 100%;
   max-width: 680px;
   position: relative;
   z-index: 4;
-} /* virš šakelių */
-.title {
-  font-family: var(--font-playfair);
-  font-size: clamp(2.2rem, 4vw, 3rem);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  font-weight: 500;
-    white-space: normal; /* leidžia laužytis */
- 
- 
-}
-.subtitle {
-  margin-top: 1rem;
-  font-size: clamp(1.1rem, 1.5vw, 1.7rem);
-  color: var(--gold);
+  color: #2A1A16;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.35);
 }
 
+/* OPTIONAL: jei nori geresnio skaitomumo ant balionų, palik.
+   Jei nenori – gali ištrinti visą šitą bloką. */
+.contentGlass {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 18px;
+  padding: 1.2rem 1.2rem 1.4rem;
+}
+
+/* Title (2 eilutės vienodo dydžio) */
+.title {
+  margin: 0;
+}
+
+.kicker,
+.brand {
+  display: block;
+  font-family: var(--font-playfair);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 2.4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  color: #2A1A16;
+}
+
+.kicker {
+  margin-bottom: 0.2rem;
+}
+
+.brand {
+  margin-bottom: 1.25rem;
+}
+
+/* Offer line (VISADA viena eilutė) */
+.offer {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: 0.45rem;
+  margin: 0 0 1.05rem 0;
+  color: #2A1A16;
+}
+
+.offerText {
+  font-size: clamp(1.3rem, 1.25vw, 2rem);
+  line-height: 1.2;
+  flex: 0 1 auto;
+  min-width: 0;
+  color: #2A1A16;
+}
+
+.offerHighlight {
+  font-size: 1.75em; /* 🔥 didelis 30% visada */
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold-deep); /* susieta su mygtukų auksu */
+  flex: 0 0 auto;
+  text-shadow: 0 1px 14px rgba(255, 255, 255, 0.35);
+}
+
+/* Description */
+.description {
+  margin: 0 0 1.35rem 0;
+ font-size: clamp(1.3rem, 1.25vw, 2rem);
+  line-height: 1.55;
+  max-width: 44ch;
+  color: #4A342E;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.25);
+}
+
+/* Senas subtitle paliekamas, bet paslepiamas */
+.subtitle {
+  display: none;
+}
+
+/* ====== CTA ====== */
 .btn {
   margin-top: 1.5rem;
   display: inline-block;
@@ -70,26 +162,11 @@
   text-decoration: none;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
+
 .btn:hover {
   filter: brightness(0.95);
   transform: translateY(-1px);
   color: var(--text-second);
-}
-
-.media {
-  position: relative;
-min-height: unset;
-  height: clamp(480px, 60vh, 820px);
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  z-index: 2; /* po šakelių */
-}
-.img {
-  object-fit: contain;
-  object-position: right center;
-  inset: -1px 0 -1px 0 !important;
-  display: block;
 }
 
 .ctaDesktop {
@@ -104,50 +181,149 @@ min-height: unset;
   flex-wrap: wrap;
 }
 
-@media (max-width: 1200px) {
-  .title {
-    padding-top: 2rem;
-    white-space: normal;
-  } /* kai nebetelpa – laužom */
+/* ====== MEDIA / IMAGE ====== */
+.media {
+  position: relative;
+  height: clamp(480px, 60vh, 820px);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  z-index: 2;
 }
+
+.img {
+  object-fit: contain;
+  object-position: right bottom;
+  inset: -1px 0 -1px 0 !important;
+  display: block;
+
+  /* fade apačioje */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 72%,
+    rgba(0, 0, 0, 0.35) 86%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 72%,
+    rgba(0, 0, 0, 0.35) 86%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
+
+/* ====== TABLET TUNING (1200 -> 901) ====== */
+@media (max-width: 1200px) {
+  .text {
+    padding-top: 2rem;
+  }
+
+  .content {
+    max-width: 620px;
+  }
+
+  /* kad 30% vis dar atrodytų “wow” ant tablet */
+  .offerHighlight {
+    font-size: 1.85em;
+  }
+}
+
+/* ====== MOBILE (<= 900) ====== */
 @media (max-width: 900px) {
+  .hero::before {
+    background-position: 0% top;
+  }
+
   .grid {
     grid-template-columns: 1fr;
     grid-template-areas:
       "text"
       "media"
       "cta";
+    padding: 0 1.2rem;
+    row-gap: 0.75rem;
+    padding-top: 1rem;
+  }
+
+  /* tekstą laikom per vidurį virš nuotraukos */
+  .text {
+    grid-area: text;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 210px;
+  }
+
+  .content {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 560px;
+  }
+
+  /* šiek tiek mažinam antraštę, bet išlaikom tokį pat išdėstymą kaip desktop */
+  .kicker,
+  .brand {
+    font-size: clamp(1.9rem, 4.8vw, 2.6rem);
+    line-height: 1.1;
+  }
+
+  /* offer turi likti viena eilute – mažinam šriftą, o 30% išlieka didelis */
+  .offer {
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .offerText {
+    font-size: clamp(1.2rem, 2.6vw, 1.25rem);
+  }
+
+  .offerHighlight {
+    font-size: 2em; /* mobile – dar didesnis vizualiai */
+  }
+
+  .description {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(1.1rem, 2.3vw, 1.15rem);
   }
 
   .media {
     grid-area: media;
     height: clamp(280px, 48vh, 560px);
   }
-  .text {
-    grid-area: text;
-    padding-top: 0;
+
+  .img {
+    object-fit: contain;
+    object-position: 50% bottom;
+    padding-top: 1rem;
   }
 
-  .ctaDesktop { display: none; }
-  .ctaMobile  {
+  .ctaDesktop {
+    display: none;
+  }
+
+  .ctaMobile {
     grid-area: cta;
     display: flex;
     justify-content: center;
     padding: 1rem 0 2rem;
   }
-  .img {
-    object-fit: contain;
-    object-position: 50% center;
-    padding-top: 1rem;
-  }
-  .content {
-    text-align: center;
-    margin: auto;
-  }
+}
 
-  .compact .media {
-    /* užtenka vienos iš šių – imu clamp, nes labiausiai „responsyvu“ */
-    height: clamp(360px, 55vh, 640px);
-    min-height: unset; /* anuliuoja min-height: inherit */
+/* ====== EXTRA SMALL (<= 420) – kad nelūžtų offer net labai siaurai ====== */
+@media (max-width: 420px) {
+  .offerText {
+    font-size: 0.95rem;
+  }
+  .offerHighlight {
+    font-size: 2.05em;
   }
 }
