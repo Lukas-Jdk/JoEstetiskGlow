@@ -79,7 +79,7 @@ export default function ChristmasHero({
             <p className={styles.description}>
               Våre eksklusive behandlinger får deg til å stråle –
               <br />
-              for deg selv og for den som står deg nær.
+              for deg selv og en du er glad i.
             </p>
 
             {/* Jei kažkur naudoji subtitle – paliekam, bet paslėpsim pagal nutylėjimą */}
