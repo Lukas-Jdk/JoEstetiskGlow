@@ -11,7 +11,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/valentino.webp") center top / cover no-repeat;
+ background-color: var(--bg-main);
   pointer-events: none;
 }
 
@@ -92,11 +92,12 @@
 .brand {
   display: block;
   font-family: var(--font-playfair);
-  font-weight: 600;
-  font-size: clamp(2.2rem, 2.4vw, 3rem);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 3vw, 3.4rem);
   line-height: 1.12;
   letter-spacing: 0.01em;
   color: #2A1A16;
+ text-transform: uppercase;
 }
 
 .kicker {
@@ -137,12 +138,12 @@
 
 /* Description */
 .description {
-  margin: 0 0 1.35rem 0;
+ margin-top: 1rem;
  font-size: clamp(1.3rem, 1.25vw, 2rem);
   line-height: 1.55;
   max-width: 44ch;
-  color: #4A342E;
-  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.25);
+  color: var(--gold);
+  
 }
 
 /* Senas subtitle paliekamas, bet paslepiamas */

@@ -43,13 +43,12 @@ export default function ChristmasHero({
     )
   ) : null;
 
-  const CTAGroup =
-    MainCTA && (
-      <div className={styles.ctaGroup}>
-        {MainCTA}
-        <GaveKort className={styles.btn} label="Bestill gavekort" />
-      </div>
-    );
+  const CTAGroup = MainCTA && (
+    <div className={styles.ctaGroup}>
+      {MainCTA}
+      <GaveKort className={styles.btn} label="Bestill gavekort" />
+    </div>
+  );
 
   return (
     <section
@@ -62,25 +61,11 @@ export default function ChristmasHero({
       <div className={styles.grid}>
         <div className={[styles.text, styles[`align-${align}`]].join(" ")}>
           <div className={styles.content}>
-            {/* ✅ Naujas tvarkingas tekstas */}
             <h1 id="xmas-hero-title" className={styles.title}>
-              <span className={styles.kicker}>Feir kjærligheten hos</span>
-              <span className={styles.brand}>Joestetisk Glow</span>
+              <span className={styles.kicker}>Jo Estetisk Glow</span>
             </h1>
 
-            <p className={styles.offer}>
-              <span className={styles.offerText}>
-                Valentinsdagens spesialtilbud –
-              </span>
-              <span className={styles.offerHighlight}>30&nbsp;%</span>
-              <span className={styles.offerText}>rabatt</span>
-            </p>
-
-            <p className={styles.description}>
-              Våre eksklusive behandlinger får deg til å stråle –
-              <br />
-              for deg selv og en du er glad i.
-            </p>
+            <p className={styles.description}>Glow With Confidence</p>
 
             {/* Jei kažkur naudoji subtitle – paliekam, bet paslėpsim pagal nutylėjimą */}
             {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
